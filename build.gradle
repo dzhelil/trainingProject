@@ -1,4 +1,4 @@
-task startSession << {
+/*task startSession << {
     chant()
 }
 
@@ -7,7 +7,7 @@ def chant() {
 }
 
 3.times {
-    task 'yayGradle$it' << {
+    task "yayGradle$it" << {
         println 'Gradle rocks'
     }
 }
@@ -15,4 +15,25 @@ def chant() {
 yayGradle0.dependsOn startSession
 yayGradle2.dependsOn yayGradle1, yayGradle0
 
-task groupTherapy (dependsOn: yayGradle2)
+task groupTherapy (dependsOn: yayGradle2)*/
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.7
+version = '1.0'
+task customJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': version
+    }
+}
+
+dependencies {
+    compile "joda-time:joda-time:2.2"
+    testCompile 'junit:junit:4.12'
+}
+
